@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "local-resume-extractor"
+version = "1.0.0"
+description = "Deterministic PDF/DOCX resume information extraction"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pypdf>=4.0,<7.0",
+  "python-docx>=1.1,<2.0",
+]
+
+[project.optional-dependencies]
+api = [
+  "fastapi>=0.110,<1.0",
+  "uvicorn[standard]>=0.27,<1.0",
+  "python-multipart>=0.0.9,<1.0",
+]
+test = ["reportlab>=4.0,<5.0"]
+
+[project.scripts]
+resume-extractor = "resume_extractor.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["resume_extractor*"]
+
